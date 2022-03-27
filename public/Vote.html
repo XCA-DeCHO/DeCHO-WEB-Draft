@@ -118,9 +118,7 @@
   <script type = "text/javascript">
       let teString;
 
-      fetch("https://decho-staging.herokuapp.com/api/v1/causes", {
-        mode:'no-cors'
-      })
+      fetch("https://decho-staging.herokuapp.com/api/v1/causes",)
           .then((response) => response.json())
           .then((responseData) => {
               teString = responseData.data.filter((cause) => cause.status === "pending");
