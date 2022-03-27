@@ -124,6 +124,7 @@
           .then((response) => response.json())
           .then((responseData) => {
               teString = responseData.data.filter((cause) => cause.status === "pending");
+              console.log(teString)
           })
           .catch((error) => console.log(error));
       var StringTest = "<hr/>"
