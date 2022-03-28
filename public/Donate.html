@@ -14,11 +14,11 @@
     <meta name="generator" content="Nicepage 4.7.1, nicepage.com">
     <link rel="icon" href="images/favicon.png">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
-    
-    
-    
-    
+
+
+
+
+
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -76,35 +76,61 @@
         </div>
       </div>
     </section>
-    <section class="u-align-center u-clearfix u-section-3" id="sec-4f00">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout" style="">
-            <div class="u-layout-row" style="">
-              <div class="u-align-left u-container-style u-image u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-image-1" src="" data-image-width="900" data-image-height="1600">
-                <div class="u-container-layout u-valign-middle u-container-layout-1" src=""></div>
-              </div>
-              <div class="u-align-left u-black u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-layout-cell-2">
-                <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <h2 class="u-text u-text-default u-text-1">Algo Liquidity for DeCHS</h2>
-                  <p class="u-text u-text-2">Simple and effective.</p>
-                  <a href="" class="u-border-2 u-border-white u-btn u-btn-rectangle u-button-style u-none u-btn-1">learn more</a>
-                  <a href="https://nicepage.com/c/slider-website-templates" class="u-active-grey-40 u-border-none u-btn u-btn-round u-button-style u-hover-grey-15 u-radius-2 u-white u-btn-2">Vote&nbsp;<span class="u-icon u-text-black"><svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068 c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557 l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104 c0.006-.006,0.011-.013,0.018-.019C513.968,262.339,513.943,249.635,506.134,241.843z"></path></svg><img></span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    
-    
+
+  <p id="sector12">Loading ...</p>
+
+
+
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-7778"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">
           <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="DeCHO---Home.html" data-page-id="66977032">DeCHO - 2022</a>
         </p>
       </div></footer>
   </body>
+
+  <script type = "text/javascript">
+      let dataRes;
+      let ViewString = "";
+
+      fetch("https://decho-staging.herokuapp.com/api/v1/causes/",)
+          .then((response) => response.json())
+          .then((responseData) => {
+              dataRes = responseData.data.filter((cause) => cause.status === "Approved");
+              console.log(dataRes)
+
+              for (let i = 0; i < dataRes.length; i++) {
+                  ViewString = ViewString + "<section class=\"u-align-center u-clearfix u-section-3\" id=\"sec-4f00\">\n" +
+                      "      <div class=\"u-clearfix u-sheet u-valign-middle u-sheet-1\">\n" +
+                      "          <div class=\"u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1\">\n" +
+                      "              <div class=\"u-layout\" style=\"\">\n" +
+                      "                  <div class=\"u-layout-row\" style=\"\">\n" +
+                      "                      <div class=\"u-align-left u-container-style u-image u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-image-1\" src=\"\" data-image-width=\"900\" data-image-height=\"1600\">\n" +
+                      "<img src="+ dataRes[i].photo_url +" width='100%' height='100%'/>                         " +
+                      "<div class=\"u-container-layout u-valign-middle u-container-layout-1\" src=\"\"></div>\n" +
+                      "                      </div>\n" +
+                      "                      <div class=\"u-align-left u-black u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-layout-cell-2\">\n" +
+                      "                          <div class=\"u-container-layout u-valign-middle u-container-layout-2\">\n" +
+                      "                              <h2 class=\"u-text u-text-default u-text-1\">"+ dataRes[i].title +"</h2>\n" +
+                      "                              <p class=\"u-text u-text-2\">"+ dataRes[i].short_description +"</p>\n" +
+                      "\n<p>"+ dataRes[i].balance +" / "+ dataRes[i].cause_approval.goal +"</p>" +
+                      "                              <a href='https://"+ dataRes[i].long_description +"' class=\"u-border-2 u-border-white u-btn u-btn-rectangle u-button-style u-none u-btn-1\">learn more</a>\n" +
+                      "                              <br/><progress id=\"file\" value='"+ dataRes[i].balance +"' max='"+ dataRes[i].cause_approval.goal +"'> 32% </progress>\n" +
+                      "<br/><button onclick=\"navigator.clipboard.writeText('" + dataRes[i].decho_wallet.address + "'); alert('Address Copied')\">" +
+                      "<b>Copy Address</b></button>\n" +
+                      "                          </div>\n" +
+                      "                      </div>\n" +
+                      "                  </div>\n" +
+                      "              </div>\n" +
+                      "          </div>\n" +
+                      "      </div>\n" +
+                      "  </section>"
+              }
+              document.getElementById("sector12").innerHTML = ViewString;
+          })
+          .catch((error) => console.log(error));
+      function myFunction(){
+          ;
+          alert("Copied the text:")
+      }
+  </script>
 </html>
